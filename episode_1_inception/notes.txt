@@ -1,0 +1,84 @@
+-->browser has JS engine in it that's why it understands the JS code 
+-->Browser does not understand what is react so we have to tell browser that it is react code.
+-->for that we have to get react in t our project 
+ 1) 1st way to add react in to our project is CDN(content delivery network).
+ 2)CDN is a space where react libery is hosted.
+ 3)<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+ 4)why there are two files? -: 1st one is the core react and 2nd one is for the react dom which act as a bridge to connect between react core and browser
+ 
+now will start creating in React-->
+--> to create element on react we uses creatElement method which is belongs to core react so,
+eg,
+const heading=React.createElement('h1',{},'namaste react');
+
+createElement()--> takes 3 arguments 1st is tag which have to create 2nd is object which assign property to tag and 3rd is what is to be there in that tag.
+
+--> when we want to render something then it is job of ReactDOM or when we want to put that h1 in to dom then we uses ReactDOM
+so , 
+eg,-: const root = ReactDOM.createRoot(document.getElemntById('root'));
+
+root.render(heading);
+
+
+--> if we want ot give attrinbues/property to our tag then we can pass in 2nd argument in createEle method.
+eg,
+const heading=React.createElement('h1',{id:'heading'},'namaste react');
+--> this heading is a JS object which has props and children. while reandering it converts that object in to the html tag (**IMP**) .
+-->{id:'heading'} --> these are also know as props 
+-->'namaste react'--> and this is the children.
+
+
+/* 
+create strut like in react 
+<div id='parent'>
+  <div id='child'>
+   <h1> i am h1 tag <h1>
+  </div>
+</div>
+*/
+--> if u wnat to creat struct like that then in 3rd argument of createElemt() method we have to pass the children in that we can pass the next tag .
+eg,->
+const parent = React.createElement('div',{id:'parent'},
+React.createElement('div',{id:'child'},
+React.createElement('h1',{},'i am h1 tag')));
+
+
+/* 
+create strut like in react 
+<div id='parent'>
+  <div id='child'>
+   <h1> i am h1 tag </h1>
+   <h2> i am h2 tag </h2> //siblings of h1 tag and childs of div tag for this we have to use arrray of child in div tag
+  </div>
+</div>
+*/
+eg,->
+const parent = React.createElement('div',{id:'parent'},
+React.createElement('div',{id:'child'},
+[React.createElement('h1',{},'i am h1 tag'),React.createElement('h2',{},'i am h2 tag')]));
+
+
+-->if more complicated structures are there then the code will become mess so for that to make ours life easy JSX is there 
+--> with the help of JSX we can add html-tags in react. 
+
+--> the most costly operation -> manipulating the dom (dom operations in JS the nodes needs to be adjusted at place)
+--> react comes with a philosfy that everything will be written in JS 
+
+
+--> the order of importing file matters in react 
+if u import the app.js file before the CDN files then it will throw error.
+
+
+--> if in your root elemt alredy there is h1 tag in html code and then after that you are rendering that root elemnt and passing parent elemt in it then 
+it will overrite that with the parent element 
+<div id='root'>
+ <h1> Tanishq Kadam </h1> // will get replaced by the parent element . 
+</div>
+html code gets parsed by line by line so ,
+
+
+--> we call react as a JS library 
+what is the diff between library and framework.? --> react only works in particular space it would be header,footer,sidebar,navbar it can works as a small part 
+--> it can work indepenedtly in small part so that's why it is library .(if you want to use react in a smaller part of your app then just put CDN links and use it --> that's why it is called as library)
+--> framwork work for whole. 

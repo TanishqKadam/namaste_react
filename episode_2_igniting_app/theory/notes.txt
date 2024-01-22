@@ -1,0 +1,109 @@
+-->how we can create our own create react app ?
+-->lot of other packges required to make our app fast.
+--> how to get that packages.?
+
+-->NMP(does not stand as node package manager)manages packages but it does not stand as node package manager.
+->any packages u wnat to use in your project it is on npm.
+
+->nmp init (to configure npm in project).
+->after this we will get package.json file
+-> what is this packge.json() --> this is configuration what ever we given 
+->package.json is configuration for nmp
+-> this packege also known as dependency and npm manages that depenedency and in package.json
+
+->bundler --> these are nothing but web-pack,parcel,veet which bundles the app properly and ship to production.
+create react app behind the seen uses web-pack and babble .
+
+-> we are using parcel for bundler.its easy to configure.
+-> to install parcel -> npm install -D parcel (what is this -D?) -> dev depedency.
+->there are two types of dependency 
+    1) dev depedency 2)normal depedency 
+1) dev depedency used in developement phase 
+2) normal depedency are used in production phase.
+
+Q what is package-lock.json() ? 
+-->it keeps track of exact track of version of that depedency installed.
+
+Q what is node modules ?
+--> this node module contains all the code fetched from npm 
+--> it contains the actual data of that depedency's
+
+-->parcel has its own depedency and that depedency has there own depedency --> called as trasitive depedency.
+->every depedency has its own package.json 
+
+we dont have to put this files in to our git it is nt necessory . we can have .gitignore file and in that we can put that depedency so that during pushing that file to gie it will get ignored
+
+-->should we keep pacakge.json and package-lock.json on git --> yes 
+if i can have  pacakge.json and package-lock.json then i can generate node-modules from that.
+just do --> npm install
+
+
+--> to build app using parcel we have to give command --> npx parcel index.html --> this will create a server for our react app like eg, http://localhost:1234 --> so now our app is ruunning on that url.
+
+-->npx parcel index.html --> sililary as npm we have npx --> npx means executing packages.(for executing pacckage we will use npx parcel) --> means we are executing parcel now.
+
+-->we get react in to our app via CDN we can get our app through npm also
+--> CDN is not a prefered way to get our react app ->why?--> fetching from cdn will be costly operation 
+-->if i alredy have in node modules then we can get it from there so it is better to get from npm.
+
+
+--> insatlling react as a packge
+command for that is --> npm install react and npm install react-dom
+
+--> now we can remove the CDN links from the index.html 
+
+--> and in our app.js we have to import the React from 'react' //i.e import from react module 
+and also import ReactDOM from 'react-dom';
+
+
+--> when you do this much and try to run the app then you will get one error as -:Browser scripts cannot have imports or exports.
+so this error means you have used import in your app.js file which is not a normal JS so to tell that it is a special kind of JS so in your <script> tag you have to add type='module' in it and then after that app will run
+
+
+what can parser do ? --> 
+-dev build
+-local server
+-HMR - hot module relaod (autmatically refreshes page when you save it).
+- it uses file watching algorithm - written in c++ 
+- faster builds beacuse of cashing.
+- image optimisation 
+- minification 
+- bundle things 
+- compress your file
+- consistant hashing
+- code spliting 
+- differetial bundling - to support on older browser
+- digonstics 
+- better error suggestions
+- gives way to host app on HTTPS 
+- tree shaking - will remove unused code for u 
+praser is beast.......
+
+
+--> when you want to build the parsel as a production ready then use command
+->npx parcel build index.html
+you will encounter error 
+for that remove main from you package.json 
+(beacuse here we are tellling that starting point is index.html and in main it is app.js so name conflict will be there for that purpose remove the main from pacakge.json())
+
+
+
+--> to make you app compatible for different browsers you can configure the browsers list in your package.json file
+ "browsersList":[
+    "last 2 chrome version",
+    "last 2 firefox version"
+  ] 
+browsersList.dev
+
+"browsersList":[
+    "last 2 versions"
+  ]
+- 
+
+....................we have created our own create react app ....................
+
+
+
+
+
+ 

@@ -1,0 +1,59 @@
+Chapter 01 - Inception
+Link to my Code
+Theory -
+● What is Emmet?
+--> emmet provides shortcuts to build html,css code
+eg.-: html:5 (to generate html boiler-plate code)
+
+● Difference between a Library and Framework?
+--> 
+library-:
+ --> 1) library has a collection of pre-written code that you can use in program by calling its function and methods.
+     2) you have controll on your code in library 
+     3) if we want to perform certain task we can perform it without distrubing the other structure.
+Framework-:
+--> 1) framework is which defines whole architechture of your application .
+    2) you dont have controll on your code in framework
+     
+● What is CDN? Why do we use it?
+-->
+The primary purpose of a CDN is to deliver web content (such as images, stylesheets, scripts, and videos) to users more efficiently and quickly.
+
+● Why is React known as React?
+--> reactive programming -->React introduces a declarative approach to building UIs, where developers describe how the UI should look and behave in different states, and React takes care of updating the DOM efficiently to reflect those changes.
+
+● What is crossorigin in script tag?
+-->The crossorigin attribute is used in the <script> tag in HTML to specify how the browser should handle loading scripts from different origins (domains) while dealing with cross-origin requests.
+
+● What is diference between React and ReactDOM
+--> React is the core part where ReactDOM deals with the dom related operations. 
+
+● What is difference between react.development.js and react.production.js files via CDN?
+-->
+Content Delivery Network (CDN) lies in their intended use during development and production stages of a React application.
+react.development.js--> exrtra error checking is there. 
+react.production.js--> smaller and faster.
+
+● What is async and defer? - see my Youtube video ;)
+--> in case of async the scripts are loaded asynchronusly (in background) and after that the scripts gets executed and html parsing will continue.
+--> in case of defer the html code parsing will not stop and in between scripts are loaded and the scripts are executed at the last of html parsing.
+
+Coding -
+● Set up all the tools in your laptop
+○ VS Code
+○ Chrome
+○ Extensions of Chrome
+● Create a new Git repo
+● Build your first Hello World program using,
+○ Using just HTML
+○ Using JS to manipulate the DOM
+○ Using React
+■ use CDN Links
+■ Create an Element
+■ Create nested React Elements
+■ Use root.render
+● Push code to Github (Theory as well as code)
+● Learn about Arrow Functions before the next class
+References:
+- https://beta.reactjs.org/apis/react/createElement
+- https://www.youtube.com/watch?v=IrHmpdORLu8
