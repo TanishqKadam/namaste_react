@@ -39,7 +39,7 @@ if JS engine is not able to understand this JSX then how it is running ? ==> par
 
 --> JSX ==> Reeact.createElemt ==> JS object ==> endered.
 
--> if you haev to give attribute to JSX then give it in camelcase format.
+-> if you haev to give attribute to JSX then give it in camelcase format.eg (className)
 
 --> if you have to write multiple lines JSX then wrap inside parenthisis.
   (<h1>namasste react from tanishq</h1>;)
@@ -49,6 +49,12 @@ if JS engine is not able to understand this JSX then how it is running ? ==> par
 
 ==> React Components --> eveery thing in react is component.
  
+Q what is component-:
+--> component is we can say a piece of UI in your application .
+-> react app build with tree of component we can say.
+-> so componenet is very crusial part of react which identifies a part of UI .with which we can build application.
+
+
 1)class based components 2) functinal component
 
 1) class based component -> old way 
