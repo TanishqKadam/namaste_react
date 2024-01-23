@@ -1,0 +1,131 @@
+-->npx parcel index.html --> command to execute parcel on index.html
+
+-->to run the app we can run it using scripts also 
+for that go in to package.json and int that script attri. you can add your npx parcel index.html command
+eg,
+script:{
+"start":"parcel index.html",
+"build":"pracel build index.html"
+"test":"jest"
+}
+
+like this you can create and usging that script we can run our project.
+--> whenever you go in company and if you want to know how to run or build that project just go in package.json file and look for scripts and in that you will find how to run that .
+
+->so now, to run that project we have to use --> npm run start(name of script)****
+
+
+-->JSX--> JS syntax where we can merge html and JS together
+-->jsx is not html inside JS 
+-->jsx is html like syntax  (imp)
+eg,-: const jsx = <h1>namasste react from tanishq</h1>;
+console.log(jsx); //react object
+
+insted of writting const heading = React.createElement('h1',{},'namaste react');  we can use JSX for simplicity.
+
+
+--> is JSX is valid JS code ?
+-->no JS engine does not understand that JSX 
+-->JS engine understands egma script language
+
+if JS engine is not able to understand this JSX then how it is running ? ==> parcel is doing all (beast).
+(JSX code is transpiled(convertion done by parcel) and then passed to JS engine)
+
+--> parcel gives that to babel for the transpilation (convertion to JS).(**imp**)
+
+-->who intalled babel ? -->pracel 
+
+--> what is babel ?  --> so it takes your JSX code and converts it to Code understandable by JS engine.(babel is JS compiler)
+
+--> JSX ==> Reeact.createElemt ==> JS object ==> endered.
+
+-> if you haev to give attribute to JSX then give it in camelcase format.
+
+--> if you have to write multiple lines JSX then wrap inside parenthisis.
+  (<h1>namasste react from tanishq</h1>;)
+
+--> cna use Extension like --> bracket code formatter , ESint , prettier
+
+
+==> React Components --> eveery thing in react is component.
+ 
+1)class based components 2) functinal component
+
+1) class based component -> old way 
+2)functional based componet -> new way(more than 90% used functional component)
+
+2) functional component --> this is nothing but a javascript function which returns JSX 
+eg,
+--> the Name of the function component always starts with capital letter.
+
+ const HeadingComponent = ()=>{
+return <h1>namaste react</h1>;
+};
+
+const HeadingComponent = ()=> (<h1 className='heading'>namasste react</h1>);
+
+
+--> to render functinal component on page 
+root.render(<HeadingComponent/>);
+
+
+--> component inside another component. -> component composition 
+eg,
+const Title = () =>{
+return (<h1>title componete namaste</h1>);
+};
+
+const HeadingCmponent =()=>{
+return (
+<div id='heading'>
+  <Title/> //incuding other component inside other
+  <h1 className='heading'>heading component</h1>
+</div>);
+}; 
+
+
+--> writing JS inside JSX 
+eg,-;
+
+const number = 1000;
+
+const HeadingCmponent =()=>{
+return (
+<div id='heading'>
+  <h2>{number}</h2>  //have to put it in a { }
+  <h1 className='heading'>heading component</h1>
+</div>);
+}; 
+
+can inject any JS code in JSX ussing {}.
+
+
+
+--> if you wnat to include react element inside JSX then
+eg,
+
+const title = (<h1>title componete namaste</h1>);
+
+const HeadingCmponent =()=>{
+return (
+<div id='heading'>
+  {title} //incuding react element inside compoennt.
+  <h1 className='heading'>heading component</h1>
+</div>);
+}; 
+ 
+
+
+-->can put any react element inside other react element
+const ele = <span> hi element </span>
+
+const title = (<h1 id='title'>
+{ele}
+title componete namaste</h1>);
+
+
+--> JSX will take care of any external attacks JSx will not execute that malicious data
+
+
+
+ 
