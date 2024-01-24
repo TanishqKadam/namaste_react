@@ -1,0 +1,79 @@
+Going to cover React hooks-:
+
+Q why we prefere react ?
+--> it makes you write code lesser , makes coding experience very fast 
+
+best practice is to make seperate files for seperate component
+
+-->folder structure-:
+->all the source code will be in src folder
+-> create seperate files for seperate component.
+->keep component file name capital as same as componesnts
+-> always remember to export file eg,- export default Header
+-> and import it in App.js
+->never keep hardcoded data in component file.
+->never keep ur hardcode string or url in coponents.
+->keep it inside file utils ,common,config
+-> in one file you can have only one default export.
+
+-> when you want to export multiple things in single file then go with named export
+eg,
+export const CDN_URL = '';
+and during import --> import {CDN_URL} from '../utils/constants';
+
+-->two types of export and import 
+1)default export/import
+export default cmponent
+import component from 'path'
+
+2) named export/import-: when you wnat to expport multiple things then use named import
+export const compneent
+import {component} from path
+
+-->adding event handlers on button
+
+<button className='filter-btn' onClick={()=>{console.log('btn clicked')}} >Top Rated Restaurant</button>
+
+--> on click of this button top rated rest should be displayed.
+
+
+-->React hooks--> hooks comes form React --> JS utility function.
+
+//state -> super-powerful variable.
+ //for that we use react hooks --> useState().
+ //a hook is normal JS function given by react with superpower 
+--> we have to import these utility funtions
+--> two imp hooks useState() and useEffect().
+
+-> useState() => used to generate super power state varible in react.
+you have to import these useState from React with named import
+
+ const[ListOfRest,setListOfRest]=useState(restaurantList);
+
+-->setListOfRest-->/*function which called when state changes*/--> jevha aplyla state badlych ahe aply component cha tevha he function call karych mnje je kahi fileterd list asel to update houn jail yala
+-->useState()-->in useState which default value should be there weather its empty or any kind of data that needs to be passed in useState(..) --> restaurantList-->/*default value*/
+-->ListOfRest --> variable which holds that default data --> on this variable we can perform operations 
+-->useState() --> returns Array and we can acess that variables with arr[0],arr[1] like this 
+->eg,
+const arr =useState(restaurantList);
+
+const ListOfRest = arr[0];
+const setListOfRest = arr[1];
+
+--> when ever state variable updates react re-reander its components (imp)
+-->react can update the dom fastly 
+
+how this happening ? 
+
+-->Recosiliation alogorithm --> its also knwo as react.fiber in react-16 
+-> actual DOM - tags represented in nodes in tree like structure
+->virtual DOM - is blueprint of actual DOM -> representation of actual DOM
+  ->virtual dom is nothing but a react element => which is a object => normal JS object
+-> diff alogorith -> finds out the difference between old virtual DOM and new virtual DOM
+-> when ever there is change in virtual dom a new virtual dom is created and kept inside the browser memory and the diff algorithm cheks the difference between old virtual dom and new virtual dom
+-> and then after the updatattion taken place inside the actual dom (and that will be a batch process -> no of process or components gets updated in one batch)
+
+
+->Reconciliation is the algorithm behind what is popularly understood as the "virtual DOM." A high-level description goes something like this: when you render a React application, a tree of nodes that describes the app is generated and saved in memory. 
+This tree is then flushed to the rendering environment — for example, in the case of a browser application, it's translated to a set of DOM operations. When the app is updated (usually via setState), a new tree is generated. 
+The new tree is diffed with the previous tree to compute which operations are needed to update the rendered app.
