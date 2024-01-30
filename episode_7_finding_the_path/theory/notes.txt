@@ -1,0 +1,164 @@
+Learining about the routing and hooks-:
+
+useEffect() --> every time when component is rendered useEffect is called and it takes two argumets one is callback function and 2nd one is depedency array
+
+dependency array changes the behavior of this useEffect (rendering)
+
+eg-:
+useEffect(()=>{
+console.log('rendered')
+})
+->depedency array argument is not compulsory , 
+->when you use only callback function then on each render your useEffect is also gets called on each render
+-> if depedency is not present then useEffect is called on each render
+
+eg-:
+useEffect(()=>{
+console.log('render')
+},[])
+
+-> if empty depedency array is there then only at initial time useEffect is called only once , it is not gets called again and again .
+
+eg-:
+useEffect(()=>{
+console.log('render');
+},[btnNameReact])
+
+->when depedency array is filled then at that time  useEffect is called every time when ever depedency changes. 
+in above eg, the btnNameReact is updated then at that time useEffeect will be called .
+
+--> so we can controll the behavior of the useEffect with the help of depedency array.
+
+
+--> always call ur useState variable inisde your component.
+-> call useState on top.
+-> never create useState inside if-else , for loop , inside-function --> can create inconsistancy with your program
+
+
+--> Routing in React. 
+-> we are going to use react-router-dom npm JS library.
+
+-to isntall react-router-dom --> npm install i react-router-dom 
+
+-> when ever you have to create a route you have to give a eouting information for that route.
+ so for that in app.js import --> import {createBrowserRouter} from 'react-router-dom';
+
+and then , to define configuration
+
+const appRouter = createBrowserRouter([//takes number of paths and elemnt to render for that path -->list of object
+{
+ path:'/'
+ element:<Applayout/>
+},
+{
+ path:'/about'
+ element:'<About/>'
+}
+]); 
+
+
+-> passing only configuration wont work we have to render it s we have to pass the appRouter for render.
+so for that we have RouterProvider given by react-router-dom
+->import {createBrowserRouter,RouterProvider} from 'react-router-dom';
+
+-RouterProvider actually provides routing configuration for appRouter
+-RouterProvider is a component 
+-previously we are rendering Applayout n render method but now we have to render the RouterProvider in that and pass appRouter as prop
+
+root.render(<RouterProvider router={appRouter}/>);
+
+--> to generate cmponent automatically use can type -> rafce then enter -> it wiil create component for u
+
+-> if you type any kind of url from your base url the it will show error
+eg,
+http://localhost:1234/adfhsad  --> it will show error 404.
+
+so for that also we can show the error page -> so for that we have errorElement in out path object 
+  {
+ path:'/'
+ element:<Applayout/>,
+ errorElement:<Error>
+}
+
+-> for this we have useRouteError() hook also it will have a error object in it.
+-> import {useRouteError} from 'react-router-dom';
+and u can use it in a Error component.
+
+
+
+--> how to create children routes -> eg, header will stay there and rest change
+-so for this we have children and this is list of paths 
+-so in our case we have to create different routes for and want to keep the header intact so for that we will create children routes for the AppLayout
+-eg,
+const appRouter = createBrowserRouter([
+  {
+    element:<AppLayout/>,
+    children:[
+  {
+    path:'/',
+    element:<body/>
+  },
+  {
+    path:'/about',
+    element:<About/>
+  },
+  {
+    path:'/contactus',
+    element:<Contactus/>
+  }
+    ],
+    errorElement:<Error/>
+  }
+]);
+ 
+- we will put our path varable with its element in AppLayout child
+- to render accrding to path we have to use the react-router-dom component outlet
+- so import outlet from react-route-dom --> import {useRouteError,Outlet} from 'react-router-dom';
+- this outlet component renders your component according to your path
+
+const AppLayout = ()=>{
+  return (
+  <div className='app'>
+    <Header/>
+    <Outlet/>  //will replace the compoenetn according to your url-path if it is /-then body , if it is /about-<about/> like this
+  </div>);
+}; 
+
+
+--> linking this routes to home,contact us , about list items in header
+-> one way is there to route we can create a anchore tag in our header list-items and in can specify the href='/about'.
+eg,-> <li><a href='/about'>About Us</a></li>
+
+but in this case when you click on that link the whole page get refreshed so during routing to other never use anchor tag
+
+->for this react-router-dom gives a link component  this will not reload you page will wor faster that anchor tag
+import {Link} from react-router-dom
+eg,
+
+<Link to='/'><li>Home</li></Link>
+<Link to='/about'><li>About us</li></Link>
+<Link to='/contactus'><li>contact us</li></Link>
+<Link to='/cart'><li>Cart</li></Link>
+
+--> this is why react is a single page appliaction(SPA) -> you dont change the page dont have to refresh page just components are changing.
+
+--> there are two types of routing can have in react-:
+1)client-side routing-> not making any calls just rendering the component on link click not fetching any new page.
+
+2)server-side routing-> when u click on the link it send network call behind and reloads the page when you get the responce (works like anchor tag)
+
+
+
+
+--> how can you read the resId in your component 
+with the help of useParams() hooks wi=hich comes from react-router-dom
+
+import {useParams} from 'react-router-dom';
+
+const param = useParams();
+-> params is objects woth resId so we cna acess it with object destructuring
+const {resId} = useParams();
+
+
+
+
