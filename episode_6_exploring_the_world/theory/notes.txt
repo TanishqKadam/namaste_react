@@ -1,0 +1,74 @@
+Monolith and microservice Architecture-:
+
+Monolith architecture-:
+when ever we want to make changes in your appllication then we have to stop that application and make the changes and again rebuild that application --> so it will take more time for building the entire application
+
+microservice architecture-:
+in microservices the application is made up with different sevices like UI,authentication,Backend,DB,email like so if we wnat to change in somthing then we dont need to stop the working of application we can make changes in that perticuler part only .
+-> this is know as seperations of concern 
+-> it follow a single responsibility principle.
+-> theese services run on their own port
+
+Two approches UI fetches the data from backend -
+1)as soon as page loads we can make api call when we get the data we will render the UI
+eg, suppose our api takes 500ms to fetch so it will wait for 500ms and then it will render
+2) as soon as the page loads we will just render the skeleton-UI and make API call and the render newly data.
+
+-->In react we will always be using 2nd approch.
+->beacuse it is better approch , and in 1st approch ur page will be stuck for 500ms depending on your timing  
+->in 2nd approch we load the skeleton UI and make APi call behind and again re-render although we are rendering 2 times react is faster so no worries.
+
+
+Q How we can fetch data dynamically in react?
+->
+To make Api calls we uses hook --> useEffect()
+Hooks are nothing but JS functions which has special meaning in react.
+
+useEffect(()=>{},[])--> it takes two arguments 1st is callback function and 2nd is the depedency array
+
+-> when this callback function is called ? --> callback fun called after the component renders.
+so of u have to do something after the component renders then you can use the useEffect.
+
+so in our 2nd approch we first load the skeleton UI and then make a call to api for fetching data. so in that case we uses useEffect() .
+
+-->can do like this to get the data from url-:
+
+useEffect(()=>{
+       fetchData();
+     },[]);
+
+const fetchData = async ()=>{
+      const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5986763&lng=73.79783479999999&page_type=DESKTOP_WEB_LISTING");
+      const json =await data.json();
+      console.log(json);
+    };
+
+
+-->so even with the 2nd approch we get for some time a black page so for that we can show a spinning loader . until the data fetches  
+but loading spinner is not a good practice in industry
+for that we go for shimmer UI
+
+--> Shimmer UI-:we load a fake page until the data get fetched.
+for eg(if you refresh swiggy page then there are some fake cards appear on screen that is nothing but a shimmer-UI).
+
+shimer UI can be said as to be conditional rendering --> when our list is empty we are showing a fake page i.e shimmer UI so that is conditional rendering
+
+-->const [reactBtnChange,setReactBtnChange] = useState('Login')
+even though these are constant how react changing the value to logout 
+->because when u use useState it will rerender whole component and it will assign new values to that so ,
+
+
+--> implementing search in app
+
+to make our input tag work we have to use onChange event on input box when ever we change the value inside that box that should come 
+so for that we will use a state variable beacuse later on we have to update the value and UI 
+->
+const [searchText,setSearchText] =  useState("");
+
+
+
+
+--> when ever state variable updates react triggers reconciliation cycle(re-renders the component)
+
+
+
