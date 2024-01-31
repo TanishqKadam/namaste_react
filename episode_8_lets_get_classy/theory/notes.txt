@@ -1,0 +1,213 @@
+Learning about class based component-:
+
+-> older way of creating component.
+-> asked lot in react interview.
+
+Class compoent-> is a component which has render method in it and that render method returns some piece of JSX 
+Functional Component -> is a Js function which returns some piece of JSX.
+
+eg,
+import React from 'react';
+
+class UserClass extends React.Component{    // React.Component is a class given by React so import React from react
+
+    render(){
+        //returns some piece of JSX 
+        return(
+            <div className='userCard'>
+                <h1>Tanishq Kadam</h1>
+                <h2>from solapur</h2>
+                <h2>@TanishqKadam</h2>
+            </div>
+        );
+    }
+}
+
+export default UserClass;
+
+
+for passing props to Class component in class component we have to use constructor and in that we have to call to super
+Q why we have to call super(props) in class component?
+-->
+-The super keyword is used to call the parent class construtor we uses in react beacuse pareant class construtors need to get executed 1st
+-when we pass super(props) then props been passed to its parent constructor means it is imp to make it available to preant class.
+-This allows the parent class to initialize its state or perform other setup based on the provided props
+
+-> we can acess that props with help of this.props.name like
+eg,
+import React from 'react';
+
+class UserClass extends React.Component{
+ 
+   constructor(props){
+     super(props);
+   };
+
+    render(){
+        //returns some piece of JSX 
+        return(
+            <div className='userCard'>
+                <h1>{this.props.name}</h1>
+                <h2>from solapur</h2>
+                <h2>@TanishqKadam</h2>
+            </div>
+        );
+    }
+}
+
+export default UserClass;
+
+
+---> loading a class based component means creating the instance of that class.
+-->when ever you create instance of class constructor gets invoked and this is the best place to give props and state to that class component.
+--> so we want to give the state to class component in constriuctor only.
+--> this state variable is big obeject which can hold all state variable.
+--> in class component 
+
+ this.state={
+count=0;//initial value
+};
+
+like this we can create the state variable.
+eg
+import React from 'react';
+
+class UserClass extends React.Component{
+ 
+   constructor(props){
+     super(props);
+
+     this.state = {
+         count:0, //default value
+     };
+   }
+
+    render(){
+        //returns some piece of JSX 
+        const{name,location} = this.props;
+        return(
+            <div className='userCard'>
+                <h1>{name}</h1>
+                <h2>{location}</h2>
+                <h2>@TanishqKadam</h2>
+                <h2>count = {this.state.count}</h2>
+                <button>click me</button>
+            </div>
+        );
+    }
+}
+
+export default UserClass;
+
+
+
+--> updating the state variable in class component
+-> never update the state variable directly
+-> react gives you method for setting the state 
+eg,
+ render(){
+        //returns some piece of JSX 
+        const{name,location} = this.props;
+        return(
+            <div className='userCard'>
+                <h1>{name}</h1>
+                <h2>{location}</h2>
+                <h2>@TanishqKadam</h2>
+                <h2>count = {this.state.count}</h2>
+                <button onClick={()=>{
+                    this.setState({count:this.state.count+1});
+                }}>click me</button>
+                <button onClick={()=>{
+                    this.setState({count:0})
+                }}>reset count</button>
+            </div>
+        );
+    }
+
+
+
+--> lifecycle of class components-:(parent-child relationship)
+-> when you create instance of class component the 1st constructor gets called and then render method gets called .
+-> when your parent component is also class component and child also class then 1st construtor of parent and render of parent called and then child consruture and child render is called.
+
+->class components has some methods 
+->componentDidMount()--> this method is get called when class components are mounted after mounting this gets called.
+eg,
+if we have parent componetDidMount and also child componentDidMount then 
+1st construtor of parent and render of parent called and parent did not mount yet (not finished execution yet) and then child construture and child render is called child componentDidmount gets called and then at last preant componentDidMount called.
+
+--> why componentDidMount is used ? --> it is used to make API calls .
+->in react we 1st loads the components and then we make api call and then re-render that components 
+-> so following that only componentDidMount will get called at when your component is mounted so.
+->  constructor->render->componentDidMount
+
+
+->what if we have more children then how this life cycle will work
+->for that we can follow the react-life cycle diagram
+->if parent is there and it has 2 child class components then.
+parent constructor is called 
+parent render
+
+1st child constructor
+1st child render
+
+2nd child constructor 
+2nd child render
+
+1st child componentDidmount
+2nd child  componentDidmount
+parent componentDidmount
+
+-> react divides the lifecycle in two phases 1)render phase 2)commit phase
+1) in render phase which ever are the components too be renders that will be executed (constructor+render)
+(after this DOM is updated which will be updated in batching(multiple render) and then goes to commit)
+2) and in commit phase all the compnentDidMunt will be executed (cmponenetDidMoutn)
+
+- this helps to boots the performance 
+
+(have a look at the react-life-cycle diagram )
+
+
+--> how can we make a call to api inside class component 
+-> we can make the compoenntDidMount as async function .
+
+async componentDidMount(){
+       const data =await fetch('https://api.github.com/users/TanishqKadam')
+       const json = await data.json();
+
+       console.log(json);
+    }
+
+
+-> --------Mounting--------
+ -constructor
+ -render(dummy)
+ -html(dummy)
+
+ -component Did Mount
+ -api call 
+ -setState - (begining of update phase)
+-------updating----------------
+ - render(api data)
+ -html(api)
+ -compnent Did Update 
+
+--> componentDidUpdate() --> when ever we setState at that time the execution of updatation phase begins and it re-renders the component with api data and at the end componentDidUpdate will get called .
+-> Did update gets called after every update.
+
+--> componentWillUnmount() --> it is called just before the component is getting unmounted.
+->when we are leaving page 
+-> for cleaning up resources 
+
+--> Issue with SPA(single page application)
+-when u are changinng ur page it is not changing the pages it is changing the component 
+
+--> never compare react life cycle to hooks.
+
+-->u can return from useEffect this will be called when u are unmounting the compoennt.
+useEffect(()=>{
+
+return()=>{
+console.log('useEffect ended')
+};
+},[])
