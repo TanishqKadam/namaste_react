@@ -1,0 +1,73 @@
+About custome Hooks-:
+
+-->single responsibility principle - each component should have only single resposibilty
+with help of this your code beacomes 
+-more readable 
+- more testable 
+-more reusable.
+
+-->why to create custome hook -> to make it more readable,more reusable,more testable
+--> custome hooks for each custome hook create that inside utils folder 
+--> name the file same as your custome hook.
+--> start with small use 
+
+import {useEffect,useState} from 'react';
+import {MENU_API_URL} from '../utils/constants';
+
+
+const useReastaurantMenu = (resId) =>{
+
+    const[resInfo,setResInfo] = useState(null);
+   //fetch the data from url using useEffect()
+   useEffect(()=>{
+       fetchData();
+   },[]);
+
+
+   const fetchData = async () =>{
+       const data = await fetch(MENU_API_URL+resId);
+       const json = await data.json();
+
+       //when we get the data we have to set the state of that component 
+       setResInfo(json.data);
+   };
+   return resInfo;
+   
+};
+
+export default useReastaurantMenu;
+
+that's how we create custome hook
+
+
+--> is it mandatory to use 'use' before the hook-> no but convention sgould be followed.
+-> in industry  they uses 'linters' -> to check the convestions and it might give error if we do not use 'use'.
+
+
+--> ww have used bundler - parcel to bundle our app for production --> that bundles all the component all JS code in to a single JS file and this JS file is large (all the components are get parsed in to this JS file) 
+ ->it can affect the performance so we have to break down app in to small pieces.
+-> we have to make smaller bundles for this . this process known as chunking / code splitting / dunamic bundling / lazy loading 
+
+--> suppose we have grocery compoenents which has a lot of child components inside it and we dont want to load that during our initial app loading 
+->so we have to load that lazily. when we go to that link that will load 
+->on demand loading
+
+eg,
+import {lazy,Suspense} from 'react'
+
+const Grocery = lazy(()=>import('path of component')) 
+
+-> lazy is a function given by react and that will take callback function and in that function import is a function which will take the path of component from which we have to load that component.
+
+-> this one line code have more power can do magical things
+
+-> Suspense is a component given by react -> wrap lazy loading component inside <Suspense> component 
+eg,-
+<Suspense fallback={<h1>loading....<h1/>}><Grocery/><Suspense/>
+
+-> why we are using suspense -> whne uu click on grocery it will take some time to get that file and react is fast so in between that time in react does not get that file then it will throw error so for that sake we uses Suspense
+->fallback -> until the code is not there we can show something like Shimmer or any piece of JSX.(<h1>loading<h1/>)
+
+
+
+ 
