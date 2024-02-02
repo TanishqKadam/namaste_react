@@ -1,0 +1,64 @@
+Adding styles -:
+
+1st way of wiritngg css - index.css 
+
+2nd - SaaS and SCSC -writing css with some superpower (little more easy) -> not recomended
+
+3rd - Styled components (used with react)
+
+4th -  Material UI - react component library give you component out of box.(prestyled components)
+
+5th - Bootstarp 
+
+6th -chakra UI / ant design 
+
+7th - Tailwind CSS we are using this 
+u dont have to leave ur JSX dont have to create seperate file .
+
+-->connfiuring tailwind-CSS
+npm install -D tailwindcss postcss
+npx tailwindcss init
+
+->postcss -->  it is a tool to transform css inside JS an taiwind uses this 
+
+->npx tailwindcss init --> initializing in to our repository 
+creates a file tailwind.config.css 
+
+->we have to create a postcss config also
+
+.postcssrc creat in a root folder and copy
+
+{
+  "plugins": {
+    "tailwindcss": {}
+  }
+}
+
+-> change in tailwindcss.config 
+
+content: [
+    "./src/**/*.{html,js,ts,jsx,tsx}",
+  ],
+
+-> change in index.css file -> romove all css 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+--> we are going to give classname -> tailwind gives you seperate class with the help of that we can easily configure css.
+
+
+--> pros and cons of tailwind CSS-:
+
+->Pros-:
+-no need of index.html (dont have to move between files)
+-tailwind css is very light-weight
+-it will import class only one time (suppose u are using m-4 all over in your app hen only one time it will include that class)
+
+
+->Cons-:
+-when u have to apply lot of css then code beacomes more ugly 
+-code beacomes less readable.
+
