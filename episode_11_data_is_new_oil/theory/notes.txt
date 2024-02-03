@@ -1,0 +1,100 @@
+Higher order components-:
+->it a function that takes a component and returns a component.
+->it add some features (modifys/enhances) component and returns it back
+->eg,
+ suppose we want to show promoted lable on the restCard so we will use resCard component if that is promoted then we will refelct promoted on that card.
+->const withPromotedLabel = (ReastaurantCard)=>{
+  return ({/**if ur components has props then it get passsed here */}props) =>{ //returns a JSX 
+    return (
+      <div>
+        <label>promoted</label> {/**enhnased version of restCard */}
+        <ReastaurantCard {...props}/>
+      </div>
+    );
+  }
+}
+
+-> these higher order components works same as pure function we are not changing the behevior of any componnet it is taking coponent as input and return coponent.
+
+->all the react application has 2 layers 1)UI layer 2)data layer and this UI-layer is powered by data-layer
+-> data layer consist of state,props.local variables.
+
+
+
+--> if we want to implement the drop functionality on click to a category list header then we have use state variable beacuse we are changing the state of component.
+
+
+
+
+
+
+--> lifiting the state -:
+->react dev tools extention-> will show data layer and ui layer (like a dom structure)
+->RestCategory has its own state when we click on diff. sections then it will show menu from it so to apply the feature of one opening and closing the other we have to give the control to its parent i.e restMenu 
+
+->--> controlled and un-controlled components -:
+Controlled component ->
+- parent is controlling the child component (restMenu controlling restCategory-to show a menu or not)
+- restCategory now dosents has its own state .
+- his state is managed by its parent
+- it is reliaing on ist parent to what to do.
+
+->uncontrolled component ->
+- it has its own state and gets managed by itself not by any pareant
+
+
+
+--> props drilling -:
+->react application when it grows there is lot of nesting of components is there and passing a data between the components from parents to child in onw way direction
+-> if we want to pass the data from parent to leaf then we have to follow hirerachy 
+-> when react application grows it gets difficult to pass following that hirerarchy. this concept is known as props drilling
+->this is problem in react .
+
+-> what if our data is somewhere and have to pass somwwhere so there need to be global data 
+-> for that react gives a react-context ,while using this we can avoid props drilling .
+-> we use context it is like data kept globally and we acess that global data where we want.
+
+
+-->//how do we crate a global context
+
+import { createContext } from "react";
+
+//react gives a utility function createContext 
+const UserContext =  createContext({
+   loggedUser:"default user",
+});
+
+export default UserContext;
+
+
+--> we can acess this data any where 
+//how to acess that context
+const{loggedUser} = useContext(UserContext)
+
+we have to use useContext hook for that 
+
+--> the data which you feel that is need to be used at multiple places that is to be passed through context
+
+
+
+--> if u want to over-ride the default values of useContext then we can  use the .provider
+ return (
+    <UserContext.Provider value={{loggedUser:userName}}> 
+      <div className="app">
+        <Header />
+        <Outlet /> {/**childresn will be replaced here according to url-path*/}
+        <Footer />
+      </div>
+    </UserContext.Provider>
+  );
+};
+
+this will override the values . 
+
+Usercontext.consumer --> will be used inside of the class component to acess the useContext hook
+
+userContext.provider .
+
+
+--> will use Redux for the state management in next episode.
+
