@@ -1,0 +1,41 @@
+{
+  "name": "episode_2_igniting_our_app",
+  "version": "1.0.0",
+  "description": "this is first react app",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest",
+    "parcel": "parcel"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanishqKadam/namaste_react.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Tanishq Kadam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TanishqKadam/namaste_react/issues"
+  },
+  "homepage": "https://github.com/TanishqKadam/namaste_react#readme",
+  "devDependencies": {
+    "parcel": "^2.11.0",
+    "postcss": "^8.4.33",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.1.0",
+    "i": "^0.3.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.1.0",
+    "react-router-dom": "^6.22.0"
+  },
+  "browsersList": [
+    "last 2 versions"
+  ]
+}
